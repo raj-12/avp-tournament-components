@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+    <defs>
+        <linearGradient id="zdmhgsfkga" x1="19.325%" x2="76.889%" y1="0%" y2="100%">
+            <stop offset="0%" stop-color="#FFD51D"/>
+            <stop offset="100%" stop-color="#F7981F"/>
+        </linearGradient>
+        <linearGradient id="nh3wjstihb" x1="50%" x2="50%" y1="2.136%" y2="100%">
+            <stop offset="0%" stop-color="#FFD521"/>
+            <stop offset="100%" stop-color="#FFEC42"/>
+        </linearGradient>
+        <linearGradient id="gfvu7fxjcc" x1="100%" x2="0%" y1="72.222%" y2="28.727%">
+            <stop offset="0%" stop-color="#FFD521"/>
+            <stop offset="100%" stop-color="#FFEC42"/>
+        </linearGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g>
+            <g>
+                <g>
+                    <path fill="url(#zdmhgsfkga)" d="M6.875 8.125h6.875v5.938c0 1.898-1.539 3.437-3.438 3.437-1.898 0-3.437-1.539-3.437-3.438V8.125z" transform="translate(-577 -1676) translate(569 1666) translate(8 10)"/>
+                    <path fill="url(#nh3wjstihb)" d="M10.311 8.125h3.439v5.932c0 1.902-1.541 3.443-3.443 3.443l.004-9.375z" transform="translate(-577 -1676) translate(569 1666) translate(8 10)"/>
+                    <path fill="#FFF" d="M10 8.125H11V11.875H10z" transform="translate(-577 -1676) translate(569 1666) translate(8 10)"/>
+                    <path stroke="#4A4A4A" d="M10.838 8.086V4.683c0-.86-.697-1.558-1.557-1.558h-.005c-.858 0-1.553.695-1.553 1.553 0 .857-.695 1.552-1.553 1.552H3.821c-.552 0-1-.447-1-1V3.757h0" transform="translate(-577 -1676) translate(569 1666) translate(8 10)"/>
+                    <path fill="url(#gfvu7fxjcc)" d="M1.875 3.125L3.75 3.125 3.75 4.375 1.875 4.375z" transform="translate(-577 -1676) translate(569 1666) translate(8 10) rotate(90 2.813 3.75)"/>
+                    <path fill="#D8D8D8" d="M2.5 2.5L3.125 2.5 3.125 3.75 2.5 3.75z" transform="translate(-577 -1676) translate(569 1666) translate(8 10) rotate(90 2.812 3.125)"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

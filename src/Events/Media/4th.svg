@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+    <defs>
+        <linearGradient id="s70hetz0wa" x1="0%" x2="100%" y1="84.722%" y2="15.278%">
+            <stop offset="0%" stop-color="#FFD51D"/>
+            <stop offset="100%" stop-color="#F7981F"/>
+        </linearGradient>
+        <linearGradient id="xwux1ugnhb" x1="50%" x2="50%" y1="0%" y2="100%">
+            <stop offset="0%" stop-color="#FFD521"/>
+            <stop offset="100%" stop-color="#FFEC42"/>
+        </linearGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g>
+            <g>
+                <g>
+                    <g transform="translate(-577 -627) translate(569 617) translate(8 10) translate(2.5 3.125)">
+                        <rect width="15" height="12.5" y="1.875" fill="url(#s70hetz0wa)" rx="1"/>
+                        <path fill="#4A4A4A" d="M0 1.875H15V3.75H0z"/>
+                        <rect width="2.25" height="4.75" x="10.125" y="-.5" fill="url(#xwux1ugnhb)" stroke="#FFF" rx="1"/>
+                        <rect width="2.25" height="4.75" x="2.625" y="-.5" fill="url(#xwux1ugnhb)" stroke="#FFF" rx="1"/>
+                        <path fill="#D8D8D8" d="M1.875 6.25H3.75V8.125H1.875z"/>
+                        <path fill="#FFF" d="M11.25 6.25H13.125V8.125H11.25zM8.125 6.25H10V8.125H8.125zM5 6.25H6.875V8.125H5zM1.875 10H3.75V11.875H1.875z"/>
+                        <path fill="#D8D8D8" d="M8.125 10H10V11.875H8.125z"/>
+                        <path fill="#FFF" d="M5 10H6.875V11.875H5z"/>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

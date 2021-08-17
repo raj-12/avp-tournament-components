@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+    <defs>
+        <linearGradient id="x4ba5mugea" x1="90.5%" x2="9.5%" y1="100%" y2="0%">
+            <stop offset="0%" stop-color="#FBB12E"/>
+            <stop offset="100%" stop-color="#FFD31D"/>
+        </linearGradient>
+        <linearGradient id="589gv9bi9b" x1="118.403%" x2="-19.652%" y1="50%" y2="50%">
+            <stop offset="0%" stop-color="#FFD521"/>
+            <stop offset="100%" stop-color="#FFEC42"/>
+        </linearGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g>
+            <g>
+                <g>
+                    <g>
+                        <path fill="url(#x4ba5mugea)" d="M5.781 8.281c2.947 0 5.35 2.33 5.465 5.249l.004.22H0c0-3.02 2.448-5.469 5.469-5.469h.312zM5.625 1.25c1.726 0 3.125 1.4 3.125 3.125 0 1.726-1.4 3.125-3.125 3.125C3.899 7.5 2.5 6.1 2.5 4.375c0-1.726 1.4-3.125 3.125-3.125z" transform="translate(-577 -995) translate(569 985) translate(8 10) translate(1.25 3.75)"/>
+                        <path fill="#D8D8D8" d="M7.758 4.75c.578.419.328-.992-.748-4.232-.35.386-.526.982-.526 1.787 0 1.208.408 1.815 1.274 2.444z" transform="translate(-577 -995) translate(569 985) translate(8 10) translate(1.25 3.75) rotate(144 7.272 2.67)"/>
+                        <path fill="#D8D8D8" d="M4.296 5.059c1.45-2.857.742-4.41-.538-4.41-.777 1.006-.689 1.454-.612 2.436.144.865.618 1.498 1.15 1.974z" transform="translate(-577 -995) translate(569 985) translate(8 10) translate(1.25 3.75) rotate(52 4.1 2.854)"/>
+                        <path fill="#D8D8D8" stroke="#FFF" d="M6.188 11.563H8.187999999999999V12.563H6.188z" transform="translate(-577 -995) translate(569 985) translate(8 10) translate(1.25 3.75)"/>
+                    </g>
+                    <path fill="url(#589gv9bi9b)" d="M14.278 8.145l1.133 1.133 1.132-1.133c.313-.313.82-.313 1.133 0 .313.313.313.82 0 1.133l-1.132 1.133 1.132 1.132c.313.313.313.82 0 1.133-.313.313-.82.313-1.133 0l-1.132-1.132-1.133 1.132c-.313.313-.82.313-1.133 0-.313-.313-.313-.82 0-1.133l1.133-1.132-1.133-1.133c-.313-.313-.313-.82 0-1.133.313-.313.82-.313 1.133 0z" transform="translate(-577 -995) translate(569 985) translate(8 10) rotate(45 15.41 10.41)"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,161 @@
+#sign-in {
+    width: 98vw;
+    height: 95vh;
+    background-color: #f9fafc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  #sign-in .sign-in-form {
+    width: 380px;
+    height: 368px;
+    padding: 0 0 14px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+  }
+  
+  #sign-in .sign-in-form > .heading {
+    margin-top: 24px;
+    width: 380px;
+    height: 29px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: FuturaPT;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #4a4a4a;
+  }
+  
+  #sign-in .sign-in-form > .signin-inputs {
+    margin-top: 58px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #sign-in .sign-in-form > .signin-inputs > .signin-input {
+    width: 288px;
+    height: 37px;
+    border-bottom: 1px solid #4a4a4a;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  #sign-in .sign-in-form > .signin-inputs > .signin-input > input {
+    margin-left: 8px;
+    border: 0px;
+    outline: 0px;
+    font-family: FuturaPTMedium;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #cccccc;
+    width: 100%;
+  }
+  
+  #sign-in .sign-in-form > .signin-inputs > img {
+    margin-top: 20px;
+  }
+  
+  #sign-in .sign-in-form > .forget-password {
+    text-align: center;
+    height: 25px;
+    margin: 65px 0 0;
+    font-family: FuturaPT;
+    font-size: 10px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #9b9b9b;
+  }
+  
+  #sign-in > .terms-signin {
+    height: 38px;
+    font-family: FuturaPT;
+    font-size: 10px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 38px;
+    letter-spacing: normal;
+    text-align: center;
+    color: #9b9b9b;
+    margin-top: 10px;
+  }
+  
+  #email::placeholder,
+  #password::placeholder {
+    padding-left: 0;
+    font-family: FuturaPTMedium;
+  }
+  
+  .LoginButton {
+    margin-top: 20px;
+    background-color: #ffd420;
+    width: 288px;
+    height: 24px;
+    font-size: 10px;
+    font-family: Futura;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+  }
+  
+  .LoginButton:hover {
+    background-image: linear-gradient(to right, #ffd420, #fff900);
+  }
+  
+  #forget-password {
+    font-family: FuturaMedium;
+    width: 380px;
+    height: 25px;
+    margin: 41px 0 0;
+    font-family: FuturaPT;
+    font-size: 10px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #9b9b9b;
+  }
+  
+  .error-message {
+    width: 380px;
+    height: 28px;
+    font-family: FuturaPT;
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: var(--red_pink);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+  }
+  
+  .password-input {
+    margin-top: 12px;
+  }
+  

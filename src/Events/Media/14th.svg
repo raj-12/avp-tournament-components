@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+    <defs>
+        <linearGradient id="y1m3wurbqa" x1="45.927%" x2="60.368%" y1="8.179%" y2="100%">
+            <stop offset="0%" stop-color="#FFEB42"/>
+            <stop offset="100%" stop-color="#FFD31D"/>
+        </linearGradient>
+        <linearGradient id="0dt0ggcnwb" x1="48.397%" x2="54.082%" y1="8.179%" y2="100%">
+            <stop offset="0%" stop-color="#FFEB42"/>
+            <stop offset="100%" stop-color="#FFD31D"/>
+        </linearGradient>
+        <linearGradient id="ikp5qwipmc" x1="100%" x2="0%" y1="100%" y2="0%">
+            <stop offset="0%" stop-color="#FBB12E"/>
+            <stop offset="100%" stop-color="#FFD31D"/>
+        </linearGradient>
+        <linearGradient id="1jx08upt6d" x1="48.887%" x2="52.834%" y1="8.179%" y2="100%">
+            <stop offset="0%" stop-color="#FFEB42"/>
+            <stop offset="100%" stop-color="#FFD31D"/>
+        </linearGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g>
+            <g>
+                <g>
+                    <g transform="translate(-577 -1541) translate(569 1531) translate(7 10) rotate(-15 18.12 .517)">
+                        <path fill="url(#y1m3wurbqa)" d="M3.214 8.783L5.714 8.783 5.264 14.88 2.938 14.136z" transform="rotate(-20 4.326 11.831)"/>
+                        <rect width="3.75" height="1" x="3.75" y="14.375" fill="#333" rx=".5"/>
+                        <path fill="url(#0dt0ggcnwb)" d="M1.219 4.375h.031V8.75h-.031C.546 8.75 0 8.204 0 7.531V5.594c0-.673.546-1.219 1.219-1.219z"/>
+                        <path fill="url(#ikp5qwipmc)" d="M1.25 3.532c2.831 0 6.373-.76 10.625-2.282v10.625C7.636 10.356 4.095 9.598 1.25 9.6c.018-2.943 0-3.74 0-6.068z"/>
+                        <rect width="3.125" height="13.125" x="11.875" fill="url(#1jx08upt6d)" rx="1.219"/>
+                        <path fill="#FFF" d="M10 3.125H11V4.125H10z"/>
+                    </g>
+                    <g fill="#9B9B9B" transform="translate(-577 -1541) translate(569 1531) translate(7 10) rotate(-15 26.803 -58.765)">
+                        <rect width="2.5" height="1" x=".625" y="1.875" rx=".5"/>
+                        <g transform="rotate(-15 1.563 -1.874)">
+                            <rect width="1.25" height="1" rx=".5"/>
+                        </g>
+                        <g transform="rotate(15 -12.68 4.749)">
+                            <rect width="1.25" height="1" rx=".5"/>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
