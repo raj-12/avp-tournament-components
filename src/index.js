@@ -14,10 +14,11 @@ import ReactDOM from 'react-dom';
 import EventMain from './Events/EventMain';
 
 import reportWebVitals from './reportWebVitals';
-import 'bootstrap/dist/js/bootstrap.min.js'
+// import 'bootstrap/dist/js/bootstrap.min.js'
 // import EventInfo from './Events/EventInfo';
 // import EventEdit from './Events/EventInfo';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 ReactDOM.render(
   <React.StrictMode>

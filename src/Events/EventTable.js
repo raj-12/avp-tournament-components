@@ -81,7 +81,7 @@ const AllEvents = (props) => {
 
     ]
     const getPromoterEvents =()=>{
-        const token= "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvZmFud2lucy5pblwvYXBpXC9sb2dpblByb21vdGVyIiwiaWF0IjoxNjI5MTc4ODA4LCJleHAiOjE2Mjk3ODM2MDgsIm5iZiI6MTYyOTE3ODgwOCwianRpIjoiWUNGY1A1RTJJT0Q2d244dyIsInN1YiI6MTAwMDA5NTY3LCJwcnYiOiIwZDNjYTZiNGM4ODM5NTc4ZWI3NjU4NGE5MDljNWIzMzEzMWU3MjE1IiwiaWQiOjEwMDAwOTU2NywiZW1haWwiOiJkYW1vbkBnbWFpbC5jb20ifQ.IlfSrNRZQRiBLrv864TKGCp-P9Bp6sllK0uU_rGIQe0";
+        const token= "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvZmFud2lucy5pblwvYXBpXC9sb2dpblByb21vdGVyIiwiaWF0IjoxNjI5NzgwMjExLCJleHAiOjE2MzAzODUwMTEsIm5iZiI6MTYyOTc4MDIxMSwianRpIjoidWQ2U09FNktBV2R2UzFUZyIsInN1YiI6MTAwMDA5NTY3LCJwcnYiOiIwZDNjYTZiNGM4ODM5NTc4ZWI3NjU4NGE5MDljNWIzMzEzMWU3MjE1IiwiaWQiOjEwMDAwOTU2NywiZW1haWwiOiJkYW1vbkBnbWFpbC5jb20ifQ.4jHbOIeRzrtwKcvNpCEY42iVFviXbkuhPCmTT0_yitA";
   
         axios({
             method:"get",

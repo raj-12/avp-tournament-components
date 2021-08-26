@@ -35,7 +35,7 @@ const EventInfo = (props)=>{
     const [tournament, setTournament] = useState({});
 
     const getEvent =()=>{
-        const token= "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvZmFud2lucy5pblwvYXBpXC9sb2dpblByb21vdGVyIiwiaWF0IjoxNjI5MTc4ODA4LCJleHAiOjE2Mjk3ODM2MDgsIm5iZiI6MTYyOTE3ODgwOCwianRpIjoiWUNGY1A1RTJJT0Q2d244dyIsInN1YiI6MTAwMDA5NTY3LCJwcnYiOiIwZDNjYTZiNGM4ODM5NTc4ZWI3NjU4NGE5MDljNWIzMzEzMWU3MjE1IiwiaWQiOjEwMDAwOTU2NywiZW1haWwiOiJkYW1vbkBnbWFpbC5jb20ifQ.IlfSrNRZQRiBLrv864TKGCp-P9Bp6sllK0uU_rGIQe0";
+        const token= "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvZmFud2lucy5pblwvYXBpXC9sb2dpblByb21vdGVyIiwiaWF0IjoxNjI5NzgwMjExLCJleHAiOjE2MzAzODUwMTEsIm5iZiI6MTYyOTc4MDIxMSwianRpIjoidWQ2U09FNktBV2R2UzFUZyIsInN1YiI6MTAwMDA5NTY3LCJwcnYiOiIwZDNjYTZiNGM4ODM5NTc4ZWI3NjU4NGE5MDljNWIzMzEzMWU3MjE1IiwiaWQiOjEwMDAwOTU2NywiZW1haWwiOiJkYW1vbkBnbWFpbC5jb20ifQ.4jHbOIeRzrtwKcvNpCEY42iVFviXbkuhPCmTT0_yitA";
         console.log(props.location.state.id)
         axios({
             method:"get",
@@ -81,7 +81,10 @@ const EventInfo = (props)=>{
     <img class="btn  dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"  src="https://avp-tournament.herokuapp.com/static/media/icon-menu-hamburger.76a23799.svg" alt="" />
     {/* </button> */}
   <ul class="dropdown-menu">
-    <li><a class="dropdown-item" >Edit</a></li>
+    <li><a className="dropdown-item" onClick={()=>props.history.push({ 
+                                            pathname: '/EditEvent',
+                                            state: {id:props.location.state.id}
+                                            })} >Edit</a></li>
 
     <li><a class="dropdown-item" style={{color:"red"}}  >Delete</a></li>
   </ul>

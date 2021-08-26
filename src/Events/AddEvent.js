@@ -31,49 +31,74 @@ import 'react-datepicker/dist/react-datepicker.css'
 import TimePicker from 'react-time-picker'
 import Select from 'react-select';
 
-const EditEvent= (props)=>{
+const AddEvent= (props)=>{
  
     const objects= {
-        "pool":["4 pools of 5 on 4 courts","HCTM pool division","KKR pool 12",'AICTE','64Team','test 32 teams','asdfg',
+        "pool_template_id":["4 pools of 5 on 4 courts","HCTM pool division","KKR pool 12",'AICTE','64Team','test 32 teams','asdfg',
                 'asdfghjkl','asdfghjklo','azxsdcvfgb','qaswedfrtg','rgreghghjfgc','erewertgerrty','gfgdfgdfsgdgd',
                 ],
-        "point":["AVP Pro","AVPNext Gold","AVPNext"," AVPA-Open","AVPA-A","AVPA-AA","AVPA-B","AVPA-BB",
+        "point_template_id":["AVP Pro","AVPNext Gold","AVPNext"," AVPA-Open","AVPA-A","AVPA-AA","AVPA-B","AVPA-BB",
                 "4 Star 18U","4 Star 16U","4 Star 14U","4 Star 12U",],
-        "season":["Tournament Season", "Winter Volley","NewOne Volley","Player Volley","Friends Volley"],
-        "seeding_method":["Tournament Seeding","Seeding Method 1","Seeding Method 2","Seeding Method 3","Seeding Method 4","Seeding Method 5"],
-        "scoresheet" : ["Tournament Scoresheet","Winter Volley","NewOne Volley","Player Volley","Friends Volley"],
+        "season_id":["Tournament Season", "Winter Volley","NewOne Volley","Player Volley","Friends Volley"],
+        "seeding_method_id":["Tournament Seeding","Seeding Method 1","Seeding Method 2","Seeding Method 3","Seeding Method 4","Seeding Method 5"],
+        "scoresheet_id" : ["Tournament Scoresheet","Winter Volley","NewOne Volley","Player Volley","Friends Volley"],
         "court":[],
         "yesorno":["yes","no"],
         "surface_type":["Sand","Grass","Other"],
         "team_listing":["Registration","Point Wise"],
     }
-    // const [value, onChange] = useState('10:00');
-
+ 
     const [changedValues, setValues]=useState({
-        "name": "Delhi event 1",
-        "description": "new event  .....",
-        "registration_cap":"yes",
-        "season_id":2,
-        "seeding_method":2,
-        "host_clinic":"yes",
-        "show_entries":"yes",
-        "online_pay":"yes",
-        "purse_amount":"5000",
-        "signature":"yes",
-        // "score_sheet_id":"1",
-        "surface_type":1,
-        "pool_id":2,
-        "creator_id":12,
-        "court_id":453,
-        "start_date":"2020-10-01",
-        "end_date":"2020-10-03",
-        "start_time":"08:00:00",
-        "end_time":"19:00:00",
-        "team_size":16,
-        "closes_on":"2020-09-29",
-        "ends_at":"19:00:00",
-        "donation_amounts":"78,5,4"
-    });
+            "name":"",
+            "court_id":493,
+            "start_date":null,
+            "end_date":null,
+            "start_time":"00:00:00",
+            "end_time":"13:00:00",
+            "registration_cap":"yes",
+            "team_size":"4",
+            "closes_on":null,
+            "ends_at":"00:00:00",
+            "pool_id":14,
+            "season_id":2,
+            "seeding_method_id":2,
+            "host_clinic":"yes",
+            "show_entries":"yes",
+            "director_id":"16"
+            ,"main_contact":"19",
+            "online_pay":"no",
+            "membership":"gold",
+            "team_listing":1,
+            "purse_amount":"8",
+            "signature":"yes",
+            "org_id":798,
+            "description":"hello jasdhaefewf",
+            "pool_template_id":14,
+            "point_template_id":1,
+            "surface_type":0,
+            "sets":3,"match_time":60,
+            "max_point_per_set":21,
+            "no_of_playoff":"2",
+            "playoff_team1":4,
+            "playoff_team2":"","playoff_team3":"",
+            "playoff_team4":"","template_id":"",
+            "age_bracket":"","div_name":"",
+            "early_bird_amount":"","late_amount":"",
+            "registration_amount":"",
+            "age_range":[],"gender":[],"skill_level":[],
+            "discount_applied":1,
+            "discount_voucher":1,"format":"",
+            "save_as_template":"","early_bird":"Yes",
+            "early_bird_date":"2021-08-25",
+            "donation_text":"534534",
+            "donation_amounts":"54,4,3",
+            "discount_amount":"","discount_text":"",
+            "division":[],
+            "template":[{"template_id":1}],
+            "template_id":""
+            });
+    
+    
     const [tournament, setTournament] = useState({
         "id": 4196,
         "name": "Delhi event 1",
@@ -169,10 +194,53 @@ const EditEvent= (props)=>{
     });
 
     const [input, setInput] = useState('');
-    const [selectedDate, setDate] = useState(1);
     
     const [courtList,setCourts] = useState([{"court_name":"hello"}]);
     const [courtId, setCourtId] = useState(0);
+
+    const [division, setDivision] = useState([]);
+    const [managers, setManagers] = useState([]);
+
+    const [pdfValue, setPdfValue] = useState({ preview: '', raw: '',name:"" });
+    const [coverPhoto, setCoverPhoto] = useState({ preview: '', raw: '',name:"" });
+    const [tournamentPhoto, setTourPhoto] = useState({ preview: '', raw: '',name:"" });
+    
+    const [startTime, setStartTime] = useState('00:00:00');
+    const [endTime, setEndTime] = useState('00:00:00');
+    const [endsAt, setEndsAt] = useState('00:00:00');
+   
+    const onCoverChange = (event) => {
+        setInput(event.target.files[0].name);
+        console.log(event.target.files[0].name)
+        console.log("cover Photo")
+        setCoverPhoto({
+            preview: URL.createObjectURL(event.target.files[0]),
+            raw: event.target.files[0],
+            name:event.target.files[0].name,
+        });
+    };
+    const tourChange = (event) => {
+         setInput(event.target.files[0].name);
+         console.log("tour Photo")
+       setTourPhoto({
+            preview: URL.createObjectURL(event.target.files[0]),
+            raw: event.target.files[0],
+            name:event.target.files[0].name,
+        });
+    };
+     const pdfChange = (event) => {
+          console.log("pdf Photo")
+            setInput(event.target.files[0].name);
+        setPdfValue({
+            preview: URL.createObjectURL(event.target.files[0]),
+            raw: event.target.files[0],
+            name:event.target.files[0].name,
+        });
+    };
+
+
+
+
     const getCourts =()=>{
         const token= "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvZmFud2lucy5pblwvYXBpXC9sb2dpblByb21vdGVyIiwiaWF0IjoxNjI5NzgwMjExLCJleHAiOjE2MzAzODUwMTEsIm5iZiI6MTYyOTc4MDIxMSwianRpIjoidWQ2U09FNktBV2R2UzFUZyIsInN1YiI6MTAwMDA5NTY3LCJwcnYiOiIwZDNjYTZiNGM4ODM5NTc4ZWI3NjU4NGE5MDljNWIzMzEzMWU3MjE1IiwiaWQiOjEwMDAwOTU2NywiZW1haWwiOiJkYW1vbkBnbWFpbC5jb20ifQ.4jHbOIeRzrtwKcvNpCEY42iVFviXbkuhPCmTT0_yitA";
         const formData = new FormData()
@@ -189,39 +257,8 @@ const EditEvent= (props)=>{
             setCourts(response.data.courtList);
         });    
     }
-    const getEvent =()=>{
-        const token= "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvZmFud2lucy5pblwvYXBpXC9sb2dpblByb21vdGVyIiwiaWF0IjoxNjI5NzgwMjExLCJleHAiOjE2MzAzODUwMTEsIm5iZiI6MTYyOTc4MDIxMSwianRpIjoidWQ2U09FNktBV2R2UzFUZyIsInN1YiI6MTAwMDA5NTY3LCJwcnYiOiIwZDNjYTZiNGM4ODM5NTc4ZWI3NjU4NGE5MDljNWIzMzEzMWU3MjE1IiwiaWQiOjEwMDAwOTU2NywiZW1haWwiOiJkYW1vbkBnbWFpbC5jb20ifQ.4jHbOIeRzrtwKcvNpCEY42iVFviXbkuhPCmTT0_yitA";
-    
-        axios({
-            method:"get",
-            url:`https://fanwins.in/api/getTournament?tournamentId=${props.location.state.id}`,
-            headers:{
-                "Authorization":"Bearer " + token
-            }
-        }).then(response=>{
-
-            var event = response.data.tournament;
-
-            var parts =event.start_date.split('/');
-            var parts1 = event.end_date.split('/');
-            var parts2 = event.end_date.split('/');
-            var mydate1 = new Date(event.start_date); 
-            event.start_date=mydate1;
-            var mydate2 = new Date(event.end_date); 
-            event.end_date=mydate2;
-            var mydate3 = new Date(event.closes_on); 
-            event.closes_on=mydate3;
-            console.log(mydate2)
-            console.log(response.data.tournament)
-            console.log(event)
-            setCourtId(event.court.court_id);
-            setTournament(event)
-        });    
-    }
-    const [division, setDivision] = useState([]);
-
     const getDropDowns =()=>{
-        const token= "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvZmFud2lucy5pblwvYXBpXC9sb2dpblByb21vdGVyIiwiaWF0IjoxNjI5MzQ4NzM3LCJleHAiOjE2Mjk5NTM1MzcsIm5iZiI6MTYyOTM0ODczNywianRpIjoiNXJ4OERDNjdhaXd4NngxRCIsInN1YiI6MTAwMDA5NTY3LCJwcnYiOiIwZDNjYTZiNGM4ODM5NTc4ZWI3NjU4NGE5MDljNWIzMzEzMWU3MjE1IiwiaWQiOjEwMDAwOTU2NywiZW1haWwiOiJkYW1vbkBnbWFpbC5jb20ifQ.6QSa0HOXuXEVchTcroxW7XvjYjR_jc86TVRA4k35eR4";
+        const token= "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvZmFud2lucy5pblwvYXBpXC9sb2dpblByb21vdGVyIiwiaWF0IjoxNjI5NzgwMjExLCJleHAiOjE2MzAzODUwMTEsIm5iZiI6MTYyOTc4MDIxMSwianRpIjoidWQ2U09FNktBV2R2UzFUZyIsInN1YiI6MTAwMDA5NTY3LCJwcnYiOiIwZDNjYTZiNGM4ODM5NTc4ZWI3NjU4NGE5MDljNWIzMzEzMWU3MjE1IiwiaWQiOjEwMDAwOTU2NywiZW1haWwiOiJkYW1vbkBnbWFpbC5jb20ifQ.4jHbOIeRzrtwKcvNpCEY42iVFviXbkuhPCmTT0_yitA";
     
         axios({
             method:"get",
@@ -231,12 +268,12 @@ const EditEvent= (props)=>{
             }
         }).then(response=>{
 
-            console.log(response.data.divisionTemplates)
+            console.log(response.data)
             setDivision(response.data.divisionTemplates)
+            setManagers(response.data.managers);
         });    
     }
-
-    function formatDate(d) {
+   function formatDate (d) {
         // var d = new Date(date),
            var month = '' + (d.getMonth() + 1),
             day = '' + d.getDate(),
@@ -249,107 +286,134 @@ const EditEvent= (props)=>{
     
         return [year, month, day].join('-');
     }
-    const eventUpdated =()=>{
-        const token= "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvZmFud2lucy5pblwvYXBpXC9sb2dpblByb21vdGVyIiwiaWF0IjoxNjI5NzgwMjExLCJleHAiOjE2MzAzODUwMTEsIm5iZiI6MTYyOTc4MDIxMSwianRpIjoidWQ2U09FNktBV2R2UzFUZyIsInN1YiI6MTAwMDA5NTY3LCJwcnYiOiIwZDNjYTZiNGM4ODM5NTc4ZWI3NjU4NGE5MDljNWIzMzEzMWU3MjE1IiwiaWQiOjEwMDAwOTU2NywiZW1haWwiOiJkYW1vbkBnbWFpbC5jb20ifQ.4jHbOIeRzrtwKcvNpCEY42iVFviXbkuhPCmTT0_yitA";
-       console.log(tournament)
-        const data = changedValues;
-        data.name = tournament.name;
-        data.description = tournament.description;
-        data.donation_text = tournament.donation_text;
-        data.registration_cap = tournament.registration_cap;
-        data.purse_amount = tournament.purse_amount;
-        data.pool_id = tournament.pool.id;
-        data.point_id = tournament.point.id;
-        data.season_id = tournament.season.id;
-        data.seeding_method = tournament.seeding_method.id;
-        data.signature = tournament.signature;
-        data.signature = tournament.signature;
-        data.court_id = courtList[courtId].court_id ;
-      
-        // dates
-        data.end_date = formatDate(tournament.end_date);
-        data.closes_on = formatDate(tournament.closes_on);
-        data.start_date = formatDate(tournament.start_date);
 
-        console.log(data)
-        const formData = new FormData()
-        formData.append('data',JSON.stringify(data))
-        // formData.append('data',{})
+  
 
-        axios({
-            method:"post",
-            url:`https://fanwins.in/api/updateTournament/${props.location.state.id}`,
-            data:formData,
-            headers:{
-                "Authorization":"Bearer " + token
-            }
-        }).then(response=>{
+  
+  
 
-           props.history.push('/')
-           console.log("Success ");
-        });    
+   const addEvent =()=>{
+            const token= "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvZmFud2lucy5pblwvYXBpXC9sb2dpblByb21vdGVyIiwiaWF0IjoxNjI5ODY5Njc2LCJleHAiOjE2MzA0NzQ0NzYsIm5iZiI6MTYyOTg2OTY3NiwianRpIjoiS1QxbXZmOGVVSGRBSzZ6TSIsInN1YiI6MTAwMDA5NTY3LCJwcnYiOiIwZDNjYTZiNGM4ODM5NTc4ZWI3NjU4NGE5MDljNWIzMzEzMWU3MjE1IiwiaWQiOjEwMDAwOTU2NywiZW1haWwiOiJkYW1vbkBnbWFpbC5jb20ifQ.PUHlQ1gzj9NOG-nWaq4Wr7mdLff7uXBsPBUQ4SgkCN8";
+        
+            const data = changedValues;
+            // dates
+            data.end_date = formatDate(data.end_date);
+            data.closes_on = formatDate(data.closes_on);
+            data.start_date = formatDate(data.start_date);
+            data.start_time = startTime.toString()+":00";
+            data.end_time= endTime.toString()+":00";
+            data.ends_at = endsAt.toString()+":00";
+
+
+            console.log(data)
+            const formData = new FormData()
+            formData.append('data',JSON.stringify(data))
+            formData.append('tournament_pic',tournamentPhoto.raw)    
+            formData.append('cover_photo',coverPhoto.raw)    
+            formData.append('tournament_doc',pdfValue.raw)
+            
+            console.log(formData)
+            axios({
+                method:"post",
+                url:`https://fanwins.in/api/createTournament`,
+                data:formData,
+                headers:{
+                    "Authorization":"Bearer " + token,
+                    "Content-type":"multipart/form-data"
+                }
+            }).then(response=>{
+
+            props.history.push('/')
+            console.log("Success ");
+            });    
     }
     useEffect(()=>{
-        console.log("Hellos")
         getDropDowns();
         getCourts();
-        getEvent();
-        console.log(courtList)
-        console.log(courtId)
-       
+ 
     },[props])
 
+  
+
+    //for redering on all changes
     useEffect(()=>{
-        console.log(input + "input");
+        console.log(tournamentPhoto.preview)
+        console.log(input + "input" +startTime);
+    },[input,startTime])
 
-    },[input])
 
+   //All value updates
     const updateValue = (e)=>{
         console.log(e.target.id, e.target.value)
         setInput(e.target.value);
-        var info = tournament;
+        var info = changedValues;
         info[e.target.id]= e.target.value;
-       setTournament(info);
+       setValues(info);
+    }
+    const UpdateNameId = (e)=>{
+        console.log(e.target.id, e.target.value)
+        setInput(e.target.value);
+
+        var info = changedValues;
+        var index = objects[e.target.id].findIndex((element)=>element==e.target.value)
+        info[e.target.id]= index;
+        console.log(info)
+        setValues(info);
     }
 
+   //dates
     const start_dates = (date)=>{
         setInput(date);
-        var info = tournament;
+        var info = changedValues;
         info["start_date"]=date;
-        setTournament(info);
+        setValues(info);
     }
     const end_dates = (date)=>{
         setInput(date);
-        var info = tournament;
+        var info = changedValues;
         info["end_date"]=date;
         setTournament(info);
     }
     const close_dates = (date)=>{
         setInput(date);
-        var info = tournament;
+        var info = changedValues;
         info["closes_on"]=date;
-        setTournament(info);
+        setValues(info);
     }
 
-    const UpdateNameId = (e)=>{
-        console.log(e.target.id, e.target.value)
+    const donationsValue = (e)=>{
+       console.log(e.target.id, e.target.value)
         setInput(e.target.value);
-        var info = tournament;
+        var info = changedValues;
+        var s = info["donation_amounts"].split(',');
 
-        var index = objects[e.target.id].findIndex((element)=>element==e.target.value)
-        info[e.target.id]['id']= index;
-        console.log(info)
-        setTournament(info);
+        if(e.target.id ==='don1')
+            s[0]=e.target.value;
+           
+        if(e.target.id ==='don2')
+            s[1]=e.target.value;
+
+        if(e.target.id ==='don3')
+            s[2]=e.target.value;
+
+        var t=s.join(',');
+        console.log(s,t);
+        info["donation_amounts"] = t;
+        setValues(info);
+
     }
+    //courts
     const changeCourt = (e)=>{
         var indexs;
         var found =  courtList.find((element,index)=>{ indexs =index;
-                                                 return element.court_id==e.target.value});
+                                       return element.court_id==e.target.value});
         found!==undefined?setCourtId(indexs):setCourtId(courtId);
     }
     useEffect(()=>{
         console.log("Court changed" + courtId)
     },[courtId])
+
+    
 
 
     return (
@@ -369,11 +433,18 @@ const EditEvent= (props)=>{
 
         </div>
         <div className="col-4 p-0 text-left">
-        <img src="https://fanwins.in/images/tournaments/1614754559-cartoon10.jpg" alt="" className="img-fluid" style=  {{width: "100px", height: "100px", borderRadious: "50px",objectFit: "cover"}}/>
+         <div className="text-center col-12">
+                 <img src="https://fanwins.in/images/tournaments/1614754559-cartoon10.jpg" alt="" style={{width: "100px", height: "100px", borderRadious: "50px",}}/>
+            <label for="file-input" style={{ color:"black", fontSize:"10px",paddingLeft:"19px"}}>EDIT PHOTO</label>
+            <input id="file-input" to="file-input" onChange={(e)=>tourChange(e)} accept="image/png, image/jpeg" type="file" style={{display:"none"}}/>
+        </div>
         </div>
         <div className="col-8 m-auto mr-0 p-0">
-        <div className="saved-event-name text-left p-0" style={{borderBottom:"1px solid rgb(151, 151, 151)",}}><input id="name" onChange={(e)=>updateValue(e)} value={tournament.name} style={{ textAlign:"center",outline:"none",border:"white 2px solid" ,weight:"700"}}></input></div>
-        </div></div></div>
+        <div className="saved-event-name text-left p-0" style={{borderBottom:"1px solid rgb(151, 151, 151)",}}>
+            <input id="name" onChange={(e)=>updateValue(e)} value={changedValues.name} style={{ textAlign:"center",outline:"none",border:"white 2px solid" ,weight:"700"}} placeholder="Event Name"></input></div>
+        </div>
+        </div>
+        </div>
         
         <div class="col-12 p-0" style={{marginTop:"24px"}} style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}} >
         <div class="container" style={{padding:"0px"}}> 
@@ -390,22 +461,10 @@ const EditEvent= (props)=>{
             </select>
         </div>
 
-        {/* <div class="col-6 text-right " style={{textAlign:"right"}}>
-        <div className="btn-group" >
-                <img className="btn  dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"  src="https://avp-tournament.herokuapp.com/static/media/icon-menu-hamburger.76a23799.svg" alt="" />
-            <select className="dropdown-menu" style={{overflow:"scroll", height:"200px"}}>
-             {courtList.map(value =>{
-                 return ( <option><a className="dropdown-item" id ={value.id}>{value.court_name}</a></option>);
-             })}
-                <li><a className="dropdown-item">Edit</a></li>
-                <li><a className="dropdown-item" style={{color:"red"}}  >Delete</a></li>
-            </select>
-            </div>
-        </div> */}
         </div></div>
 
-        <input type="text" class="form-control address-full" placeholder={tournament.court.court_name} value={courtList[courtId]!==undefined?courtList[courtId].court_name:""}/>
-        <input type="text" class="form-control address-full" placeholder={tournament.court.street_address} value={courtList[courtId]!==undefined?courtList[courtId].street_address:""}/>
+        <input type="text" class="form-control address-full" placeholder={"court name"} value={courtList[courtId]!==undefined?courtList[courtId].court_name:""}/>
+        <input type="text" class="form-control address-full" placeholder={"street address"} value={courtList[courtId]!==undefined?courtList[courtId].street_address:""}/>
         <div class="container">
         <div class="row">
         <div class="col-2 p-0 ">
@@ -422,10 +481,10 @@ const EditEvent= (props)=>{
         
         </div>
         <div class="col-4 p-0 pr-1"  >
-        <input type="text" placeholder={tournament.court.zip} class="form-control address-full" value={courtList[courtId]!==undefined?courtList[courtId].zip:""}/>
+        <input type="text" placeholder={"zip"} class="form-control address-full" value={courtList[courtId]!==undefined?courtList[courtId].zip:""}/>
         </div>
         <div class="col-3 p-0">
-        <input type="number" placeholder="40" class="form-control address-full webkit_spinner_none" min="1" value="40"/>
+        <input type="number" placeholder="number" class="form-control address-full webkit_spinner_none" min="1" value="40"/>
         </div></div></div>
        
        
@@ -480,7 +539,7 @@ const EditEvent= (props)=>{
         <div style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}} >
             <DatePicker
             id="start_date"
-            selected={new Date()}
+            selected={changedValues.start_date}
             onChange={date=>start_dates(date)} //only when value has changed
             />
         </div></div>
@@ -496,7 +555,7 @@ const EditEvent= (props)=>{
         <div className="col-7 text-left m-auto saved-shadow-data" style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}} >
             <div>
             <DatePicker 
-            selected={tournament.end_date}
+            selected={changedValues.end_date}
             style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}} 
             onChange={date=>end_dates(date)} //only when value has changed
             />
@@ -505,10 +564,76 @@ const EditEvent= (props)=>{
         </div>
         </div>
         
+        <div className="container">
+        <div className="row box-saved-screen">
+        <div className="col-1 p-0 text-left pl-2 m-auto pb-1">
+        <img src={img_4} alt="" className="img-fluid"/>
+        </div>
+        <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Closing on</div>
+        <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1">
+        <div  style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}} >
+            <DatePicker
+                startDate={new Date()}
+                endDate={changedValues.start_date}
+                selected={changedValues.closes_on}
+                onChange={date=>close_dates(date)} 
+            />
+        </div></div>
+        </div>
+        </div>
+
         </div>
         </div>
        
         {/* end */}
+
+         {/* start */}
+         <div className="col-12 p-0 " style={{marginTop:"24px"}}>
+        <div className="text-left address-title">Time</div>
+
+        <div className="shadow-box-saved-screen">
+        <div className="container">
+        <div className="row box-saved-screen">
+        <div className="col-1 p-0 text-left pl-2 m-auto pb-1">
+        <img src={img_5} alt="" className="img-fluid"/>
+        </div>
+        <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Start</div>
+        <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1">
+            <div style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
+                 <TimePicker
+                 id="start_time"
+                onChange={setStartTime}
+                value={startTime}
+                />
+            </div>
+        
+        </div>
+        </div>
+        </div>
+
+        <div className="container">
+        <div className="row box-saved-screen">
+        <div className="col-1 p-0 text-left pl-2 m-auto pb-1">
+        <img src={img_5} alt="" className="img-fluid"/>
+        </div>
+        <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Ends</div>
+        <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1">
+            <div style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
+                <TimePicker
+                 id="end_time"
+                onChange={setEndTime}
+                value={endTime}
+                />
+            </div>
+        
+        </div>
+        </div>
+        </div>
+        
+        </div>
+        </div>
+        {/* end */}
+        
 
 
         {/* start */}
@@ -525,14 +650,6 @@ const EditEvent= (props)=>{
         <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-1">Registration Cap</div>
         <div className="col-7 text-right m-auto saved-shadow-data mr-0 pr-0 text-capitalize">
 
-        {/* <div class="col-12 p-0 text-right m-auto pr-2">
-        Yes
-        <a href="#/" id="score-hamburger" class="tri_top_event_hidden">
-        <div>
-        <img src="https://avp-tournament.herokuapp.com/static/media/icon-menu-chevron-down.d37aeda2.svg" alt=""/>
-        </div></a>
-        </div> */}
-
             <select id="registration_cap" value={tournament.registration_cap} onChange={e=>updateValue(e)} style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}} >
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
@@ -542,27 +659,8 @@ const EditEvent= (props)=>{
     
         </div>
         </div>
-        {/* end */}
 
-       
-        <div className="container">
-        <div className="row box-saved-screen">
-        <div className="col-1 p-0 text-left pl-2 m-auto pb-1">
-        <img src={img_4} alt="" className="img-fluid"/>
-        </div>
-        <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Closing on</div>
-        <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1">
-        <div  style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}} >
-            <DatePicker
-                startDate={new Date()}
-                endDate={tournament.start_date}
-                selected={tournament.closes_on}
-                onChange={date=>close_dates(date)} 
-            />
-        </div></div>
-        </div>
-        </div>
-        
+
         <div className="container">
         <div className="row box-saved-screen">
         <div className="col-1 p-0 text-left pl-2 m-auto pb-1">
@@ -572,13 +670,98 @@ const EditEvent= (props)=>{
         <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1">
             <div style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
                 <TimePicker
-                // onChange={onChange}
-                // value={value}
+                 id="ends_at"
+                onChange={setEndsAt}
+                value={endsAt}
                 />
             </div>
         
         </div>
+        </div>
+        </div>
+
+        <div className="container">
+        <div className="row mt-0 box-saved-screen">
+        <div className="col-1 p-0 text-left pl-2 m-auto pb-1">
+        <img src={img_6} alt="" className="img-fluid"/>
+        </div>
+        <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Team Size</div>
+        <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1">
+        <select id="team_size" onChange={e=>updateValue(e)} style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}} >
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+
+            </select>
+        </div>
         </div></div>
+
+
+        <div className="container">
+        <div className="row mt-0 box-saved-screen">
+        <div className="col-1 p-0 text-left pl-2 m-auto pb-1">
+        <img src={img_6} alt="" className="img-fluid"/>
+        </div>
+        <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">No. of sets</div>
+        <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1">
+        <select id="" style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}} >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+        
+        
+        </div>
+        </div></div>
+
+        <div className="container">
+        <div className="row mt-0 box-saved-screen">
+        <div className="col-1 p-0 text-left pl-2 m-auto pb-1">
+        <img src={img_6} alt="" className="img-fluid"/>
+        </div>
+        <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Match Time</div>
+        <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1">
+        <select id="match_time" onChange={e=>updateValue(e)} style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}} >
+                <option value="70">70 Minutes</option>
+                <option value="60">60 Minutes</option>
+                <option value="50">50 Minutes</option>
+                <option value="40">40 Minutes</option>
+
+            </select>
+        </div>
+        </div></div>
+
+        <div className="container">
+        <div className="row mt-0 box-saved-screen">
+        <div className="col-1 p-0 text-left pl-2 m-auto pb-1">
+        <img src={img_6} alt="" className="img-fluid"/>
+        </div>
+        <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">No. of playoffs</div>
+        <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1">
+        <select id="no_of_playoff" onChange={e=>{updateValue(e)}} style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}} >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+        
+        </div>
+        </div></div>
+
+        
+        <div className="container">
+        <div className="row mt-0 box-saved-screen">
+        <div className="col-1 p-0 text-left pl-2 m-auto pb-1">
+        <img src={img_1} alt="" className="img-fluid"/>
+        </div><div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Max points per set</div>
+        <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1 text-capitalize">
+        <input inputmode="numeric" pattern="[0-9]*" placeholder="max points"  class="form-control p-0 event-number-input" name="leagueCost" type="text" style= {{ textAlign:"right",fontSize:"12px",height:"inherit"}}/>
+
+        </div>
+        </div></div>
+
         
         </div>
         </div>
@@ -597,13 +780,12 @@ const EditEvent= (props)=>{
         </div>
         <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Pools</div>
         <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1">
-        <select style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}} >
-                <option>Yes</option>
-                <option>No</option>
+        <select id="pool_template_id" onChange={e=>UpdateNameId(e)} style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}} >
+                {objects.pool_template_id.map(value=>{
+                return( <option value={value}>{value}</option>);
+            })} 
 
             </select>
-        
-        
         </div>
         </div></div>
         
@@ -614,8 +796,8 @@ const EditEvent= (props)=>{
         </div>
         <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Season</div>
         <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1">
-        <select id="season" onChange={e=>UpdateNameId(e)} value={objects.season[tournament.season.id]}   style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
-          {objects.season.map(value=>{
+        <select id="season_id" onChange={e=>UpdateNameId(e)}   style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
+          {objects.season_id.map(value=>{
               return( <option value={value}>{value}</option>);
           })} 
                 
@@ -631,8 +813,8 @@ const EditEvent= (props)=>{
         </div>
         <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Placement Points</div>
         <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1">
-        <select id="point" onChange={e=>UpdateNameId(e)} value={objects.point[tournament.point.id]}   style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
-          {objects.point.map(value=>{
+        <select id="point_template_id" onChange={e=>UpdateNameId(e)}   style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
+          {objects.point_template_id.map(value=>{
               return( <option value={value}>{value}</option>);
           })} 
                 
@@ -647,14 +829,12 @@ const EditEvent= (props)=>{
         </div>
         <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Seeding Method</div>
         <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1">
-        <select id="seeding_method" onChange={e=>UpdateNameId(e)} value={objects.seeding_method[tournament.seeding_method.id]}   style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
-          {objects.seeding_method.map(value=>{
+        <select id="seeding_method_id" onChange={e=>UpdateNameId(e)}    style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
+          {objects.seeding_method_id.map(value=>{
               return( <option value={value}>{value}</option>);
           })} 
                 
         </select>
-
-        
         </div>
         </div></div>
         
@@ -665,7 +845,7 @@ const EditEvent= (props)=>{
         </div>
         <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Surface Type</div>
         <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1">
-        <select id="surface_type" onChange={e=>updateValue(e)} value={tournament.surface_type}  style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
+        <select id="surface_type" onChange={e=>UpdateNameId(e)}   style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
             {objects.surface_type.map(value=>{
                 return( <option value={value}>{value}</option>);
             })} 
@@ -680,7 +860,7 @@ const EditEvent= (props)=>{
         </div>
         <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Host Clinic</div>
         <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1 text-capitalize">
-        <select id="host_clinic" value={tournament.host_clinic} onChange={e=>updateValue(e)} style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
+        <select id="host_clinic"  onChange={e=>updateValue(e)} style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
 
@@ -697,7 +877,7 @@ const EditEvent= (props)=>{
         </div>
         <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Show Entries</div>
         <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1 text-capitalize">
-        <select id="show_entries" value={tournament.show_entries} onChange={e=>updateValue(e)} style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
+        <select id="show_entries"   onChange={e=>updateValue(e)} style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
 
@@ -713,7 +893,7 @@ const EditEvent= (props)=>{
         </div>
         <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Team Listing</div>
         <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1 text-capitalize">
-        <select id="team_listing" onChange={e=>updateValue(e)} value={tournament.team_listing}  style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
+        <select id="team_listing" onChange={e=>UpdateNameId(e)}  style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
             {objects.team_listing.map(value=>{
                 return( <option value={value}>{value}</option>);
             })} 
@@ -728,30 +908,33 @@ const EditEvent= (props)=>{
         <div className="col-12 p-0" style={{marginTop:"24px"}}>
         <div className="text-left address-title">Contact</div>
         <div className="shadow-box-saved-screen">
-        <div className="container">
-        <div className="row mt-0 box-saved-screen">
-        <div className="col-1 p-0 text-left pl-2 m-auto pb-1">
-        <img src={img_1} alt="" className="img-fluid"/>
-        </div>
-        <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Director</div>
-        <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1">
-        <select id="director.first_name" value={tournament.director.first_name} onChange={e=>updateValue(e)} style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
-                <option value="Test Name">TestName</option>
-                <option value="Hellos">Hells</option>
 
-        </select>
-        
-        </div>
-        </div></div>
-        
-        <div className="container">
-        <div className="row box-saved-screen">
-        <div className="col-1 p-0 text-left pl-2 m-auto pb-1">
-        <img src={img_1} alt="" className="img-fluid"/>
-        </div>
-        <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Main Contact</div>
-        <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1">testUser13 userLN</div>
-        </div></div></div></div>
+                    <div className="container">
+                    <div className="row mt-0 box-saved-screen">
+                    <div className="col-1 p-0 text-left pl-2 m-auto pb-1">
+                    <img src={img_1} alt="" className="img-fluid"/>
+                    </div>
+                    <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Director</div>
+                    <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1">
+                    <select id="director_id"  onChange={e=>updateValue(e)} style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
+                          {managers.map(value=>(<option value={value.id}>{value.promoter_name}</option>))}  
+                    </select>
+                    </div></div></div>
+                    
+                    <div className="container">
+                    <div className="row box-saved-screen">
+                    <div className="col-1 p-0 text-left pl-2 m-auto pb-1">
+                    <img src={img_1} alt="" className="img-fluid"/>
+                    </div>
+                    <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Main Contact</div>
+                    <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1">
+                    <select id="main_contact"  onChange={e=>updateValue(e)} style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
+                          {managers.map(value=>(<option value={value.id}>{value.promoter_name}</option>))}  
+                    </select>
+                    </div>
+                    </div></div>
+                    </div>
+                    </div>
         
         {/* start */}
         <div className="col-12 p-0" style={{marginTop:"24px"}}>
@@ -765,11 +948,10 @@ const EditEvent= (props)=>{
         </div>
         <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Online Pay</div>
         <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1 text-capitalize">
-        <select style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
-                <option>Yes</option>
-                <option>No</option>
-
-            </select>
+        <select id="online_pay" onChange={(e)=>updateValue(e)} style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+        </select>
         </div>
         </div></div>
         
@@ -778,10 +960,9 @@ const EditEvent= (props)=>{
         <div className="col-1 p-0 text-left pl-2 m-auto pb-1">
         <img src={img_1} alt="" className="img-fluid"/>
         </div>
-        
         <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Purse Amount</div>
         <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1">
-        <input inputmode="numeric" pattern="[0-9]*" placeholder="$" id="purse_amount" onChange={(e)=>updateValue(e)} value={tournament.purse_amount} class="form-control p-0 event-number-input" name="leagueCost" type="text" style= {{ textAlign:"right",fontSize:"12px",height:"inherit"}}/>
+        <input inputmode="numeric" pattern="[0-9]*" placeholder="$" id="purse_amount" onChange={(e)=>updateValue(e)}  class="form-control p-0 event-number-input" name="leagueCost" type="text" style= {{ textAlign:"right",fontSize:"12px",height:"inherit"}}/>
 
         </div>
         </div></div>
@@ -793,7 +974,7 @@ const EditEvent= (props)=>{
         </div>
         <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Donation Text</div>
         <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1 text-capitalize">
-        <input inputmode="numeric" value={tournament.donation_text} id="donation_text" onClick={(e)=>updateValue(e)}  placeholder="Enter Donation Text" class="form-control p-0 event-number-input" name="leagueCost" type="text" style= {{ textAlign:"right",fontSize:"12px",height:"inherit"}}/>
+        <input inputmode="numeric"  id="donation_text" onChange={(e)=>updateValue(e)}  placeholder="Enter Donation Text" class="form-control p-0 event-number-input" name="leagueCost" type="text" style= {{ textAlign:"right",fontSize:"12px",height:"inherit"}}/>
         </div>
         </div></div>
         
@@ -804,7 +985,7 @@ const EditEvent= (props)=>{
         </div>
         <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Donation 1</div>
         <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1 text-capitalize">
-        <input inputmode="numeric" pattern="[0-9]*"  value={tournament.donation_amounts.split(',')[0]} placeholder="$" class="form-control p-0 event-number-input" name="leagueCost" type="text" style= {{ textAlign:"right",fontSize:"12px",height:"inherit"}}/>
+        <input inputmode="numeric" id="don1" onChange={e=>donationsValue(e)} pattern="[0-9]*"   placeholder="$" class="form-control p-0 event-number-input" name="leagueCost" type="text" style= {{ textAlign:"right",fontSize:"12px",height:"inherit"}}/>
         </div>
         </div>
         </div>
@@ -817,7 +998,7 @@ const EditEvent= (props)=>{
         </div>
         <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Donation 2</div>
         <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1 text-capitalize">
-        <input inputmode="numeric" pattern="[0-9]*" value={tournament.donation_amounts.split(',')[1]} placeholder="$" class="form-control p-0 event-number-input" name="leagueCost" type="text" style= {{ textAlign:"right",fontSize:"12px",height:"inherit"}}/>
+        <input inputmode="numeric" pattern="[0-9]*" id="don2" onChange={e=>donationsValue(e)}   placeholder="$" class="form-control p-0 event-number-input" name="leagueCost" type="text" style= {{ textAlign:"right",fontSize:"12px",height:"inherit"}}/>
 
         </div>
         </div></div>
@@ -828,7 +1009,7 @@ const EditEvent= (props)=>{
         <img src={img_1} alt="" className="img-fluid"/>
         </div><div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Donation 3</div>
         <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1 text-capitalize">
-        <input inputmode="numeric" pattern="[0-9]*" placeholder="$" value={tournament.donation_amounts.split(',')[2]} class="form-control p-0 event-number-input" name="leagueCost" type="text" style= {{ textAlign:"right",fontSize:"12px",height:"inherit"}}/>
+        <input inputmode="numeric" pattern="[0-9]*" id="don3" onChange={e=>donationsValue(e)} placeholder="$"  class="form-control p-0 event-number-input" name="leagueCost" type="text" style= {{ textAlign:"right",fontSize:"12px",height:"inherit"}}/>
 
         </div>
         </div></div>
@@ -839,7 +1020,15 @@ const EditEvent= (props)=>{
         <img src={img_1} alt="" className="img-fluid"/>
         </div>
         <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Allow Membership</div>
-        <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1 ">silver</div>
+        <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1 ">
+        
+        <select  style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
+                <option value="gold">Gold</option>
+                <option value="silver">Silver</option>
+                <option value="bronze">Bronze</option>
+
+            </select>
+        </div>
         </div>
         </div></div></div>
         
@@ -855,11 +1044,10 @@ const EditEvent= (props)=>{
         </div>
         <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Signature Agreement</div>
         <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1 text-capitalize">
-        <select style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
-                <option>Yes</option>
-                <option>No</option>
-
-            </select>
+        <select id="signature" onChange={(e)=>updateValue(e)} style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+        </select>
         </div>
         </div></div>
         
@@ -870,8 +1058,8 @@ const EditEvent= (props)=>{
         </div>
         <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Score Sheet</div>
         <div className="col-7 text-right m-auto saved-shadow-data mr-2 pr-1">
-        <select id="scoresheet" value={objects.scoresheet[tournament.scoresheet.id]} onChange={e=>updateValue(e)} style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
-        {objects.scoresheet.map(value=>{
+        <select id="scoresheet_id" onChange={e=>UpdateNameId(e)} style={{outline:"none", border:"none",fontSize:"12px",height:"inherit"}}>
+        {objects.scoresheet_id.map(value=>{
                 return( <option value={value}>{value}</option>);
             })} 
         </select>
@@ -886,8 +1074,12 @@ const EditEvent= (props)=>{
         
         <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">PDF Instructions</div>
         <div className="col-7 text-right m-auto pdf-upload pr-1"   style= {{ textAlign:"right",fontSize:"12px",height:"inherit"}}>
-        <label for="file-input-pdf"><img src="https://avp-tournament.herokuapp.com/static/media/icon-menu-upload.6c121dfa.svg" alt=""/></label>
-        <input  id="file-input-pdf"  type="file"/>
+       
+        
+        <label for="file-input-pdf"> <p id="pdfname" style={{fontSize:"10px",float:"left"}}>{pdfValue.name}</p>
+        <img  src="https://avp-tournament.herokuapp.com/static/media/icon-menu-upload.6c121dfa.svg" alt=""/>
+        </label>
+        <input onChange={(e)=>pdfChange(e)} id="file-input-pdf"  type="file"/>
 
         </div>
         </div></div></div></div>
@@ -898,7 +1090,7 @@ const EditEvent= (props)=>{
         <div className="container">
         <div className="row shadow-box-saved-screen mt-0 " style={{height:"172px"}}>
         <div className="col-12 p-0 pr-1 pl-2 pb-1 textarea-style bg-white" style={{height: "172px"}}>
-        <textarea className="form-control p-0 textarea-style bg-white" id="exampleFormControlTextarea1" rows="3" maxlength="1000" disabled="" style={{height:"160px",resize:"none"}} id="description" value={tournament.description}  onChange={(e)=>updateValue(e)}>new event  .....</textarea>
+        <textarea className="form-control p-0 textarea-style bg-white"  rows="3" maxlength="1000" disabled="" style={{height:"160px",resize:"none"}} id="description"   onChange={(e)=>updateValue(e)}>new event  .....</textarea>
         <div className="text-right description-bottom">16/1000</div>
         </div></div></div></div>
         
@@ -937,17 +1129,19 @@ const EditEvent= (props)=>{
         <img src={img_1} alt="" className="img-fluid"/></div>
         <div className="col-4 p-0 text-left box-shadow-text mt-auto mb-auto pl-2">Event Photo Corner</div>
         <div className="col-7 text-right m-auto pdf-upload pr-1"   style= {{ textAlign:"right",fontSize:"12px",height:"inherit"}}>
-        <label for="file-input-pdf"><img src="https://avp-tournament.herokuapp.com/static/media/icon-menu-upload.6c121dfa.svg" alt=""/></label>
-        <input  id="file-input-pdf"  type="file"/>
+        <label for="file-input-1">
+        <p style={{fontSize:"10px",float:"left"}}>{coverPhoto.name}</p>
+        <img src="https://avp-tournament.herokuapp.com/static/media/icon-menu-upload.6c121dfa.svg" alt=""/>
+        </label>
+        <input  onChange={(e)=>onCoverChange(e)}  id="file-input-1"  type="file"/>
+            {/* <input id="file-input" to="file-input" onChange={(e)=>tourChange(e)} accept="image/png, image/jpeg" type="file" /> */}
 
         </div>
        
        </div></div></div>
-        
         </div>
-
         <div>
-            <button type="button" onClick={()=>eventUpdated()} class="btn btn-warning" style={{borderRadius:"10px",width:"70px", float:"right", margin:"1px",marginTop:"10px",marginBottom:"20px",}}>Save</button>
+            <button type="button" onClick={()=>addEvent()} class="btn btn-warning" style={{borderRadius:"10px",width:"70px", float:"right", margin:"1px",marginTop:"10px",marginBottom:"20px",}}>Save</button>
             <button type="button"   class="btn btn-warning" style={{borderRadius:"10px",width:"70px", float:"right",margin:"1px",marginTop:"10px",marginBottom:"20px", backgroundColor:"white"}}>Cancel</button>
 
         </div>
@@ -960,4 +1154,4 @@ const EditEvent= (props)=>{
 }
 
 
-export default EditEvent;
+export default AddEvent;
